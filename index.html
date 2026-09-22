@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SiteOn Solutions UF — Vi bygger hemsidor som fungerar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060a0b;
+    --bg-alt: #0a1112;
+    --panel: #0d1517;
+    --border: #1c2a29;
+    --border-strong: #2b3f3b;
+    --text: #dbe8e4;
+    --text-dim: #85978f;
+    --text-faint: #4c5b56;
+    --accent: #2dd4a0;
+    --accent-dim: #1a8f6c;
+    --accent-soft: rgba(45, 212, 160, 0.1);
+    --amber: #e8a659;
+    --amber-soft: rgba(232, 166, 89, 0.12);
+    --mono: 'JetBrains Mono', SFMono-Regular, Consolas, 'Liberation Mono', monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(76px + env(safe-area-inset-top, 0px)); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Nav ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: rgba(6, 10, 11, 0.85);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .logo .tag { color: var(--accent); }
+  .navlinks {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--mono);
+    font-size: 13.5px;
+  }
+  .navlinks a {
+    text-decoration: none;
+    color: var(--text-dim);
+    transition: color 0.15s ease;
+    padding: 6px 0;
+  }
+  .navlinks a:hover { color: var(--accent); }
+  .navlinks a:focus-visible, a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  .nav-cta {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--bg);
+    background: var(--accent);
+    border: none;
+    padding: 9px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: filter 0.15s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { filter: brightness(1.12); }
+  .menu-btn {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-strong);
+    color: var(--text);
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-family: var(--mono);
+    cursor: pointer;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 88px 0 96px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 480px;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(45,212,160,0.08), transparent 60%),
+      radial-gradient(ellipse at 85% 20%, rgba(232,166,89,0.05), transparent 55%);
+    pointer-events: none;
+    animation: driftbg 24s ease-in-out infinite alternate;
+  }
+  @keyframes driftbg {
+    from { transform: translateX(-2%) translateY(0); }
+    to { transform: translateX(2%) translateY(1.5%); }
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+  }
+  .eyebrow-line {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: var(--mono);
+    font-size: clamp(30px, 4.4vw, 46px);
+    line-height: 1.18;
+    font-weight: 600;
+    margin: 0 0 20px;
+    letter-spacing: -0.01em;
+  }
+  .hero p.lede {
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 46ch;
+    margin: 0 0 32px;
+  }
+  .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px 22px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: filter 0.15s ease, transform 0.15s ease, background 0.15s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--accent); color: #06110c; }
+  .btn-primary:hover { filter: brightness(1.12); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Terminal */
+  .terminal {
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px -20px rgba(0,0,0,0.6);
+  }
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 14px;
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--border);
+  }
+  .term-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
+  .term-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-left: 6px;
+  }
+  .term-body {
+    padding: 22px 20px 26px;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    min-height: 220px;
+  }
+  .term-line { margin: 0 0 10px; color: var(--text-dim); white-space: pre-wrap; word-break: break-word; }
+  .term-prompt { color: var(--accent); }
+  .term-out { color: var(--text); }
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background: var(--amber);
+    margin-left: 2px;
+    vertical-align: -2px;
+    animation: blink 1s step-end infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 84px 0; border-top: 1px solid var(--border); }
+  .section-head { margin-bottom: 44px; max-width: 60ch; }
+  .comment {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 13px;
+    margin: 0 0 12px;
+  }
+  h2 {
+    font-family: var(--mono);
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 600;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+  .section-head p { color: var(--text-dim); margin: 0; font-size: 15.5px; }
+
+  /* ---------- Services ---------- */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  .svc-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--border-strong);
+    border-radius: 6px;
+    padding: 22px 22px 24px;
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+  .svc-card:hover { border-left-color: var(--accent); transform: translateY(-2px); }
+  .svc-card .fn {
+    font-family: var(--mono);
+    font-size: 15px;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+  .svc-card .fn .kw { color: var(--amber); }
+  .svc-card .fn .name { color: var(--accent); }
+  .svc-card p { color: var(--text-dim); font-size: 14.5px; margin: 0; }
+
+  /* ---------- Process ---------- */
+  .process-list { list-style: none; margin: 0; padding: 0; }
+  .process-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .process-item:last-child { border-bottom: none; }
+  .process-num {
+    font-family: var(--mono);
+    color: var(--accent);
+    font-size: 14px;
+    padding-top: 2px;
+  }
+  .process-item h3 {
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  .process-item p { margin: 0; color: var(--text-dim); font-size: 14.5px; max-width: 58ch; }
+
+  /* ---------- Why ---------- */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .why-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 18px;
+  }
+  .why-card .num {
+    font-family: var(--mono);
+    color: var(--amber);
+    font-size: 12px;
+    margin: 0 0 10px;
+  }
+  .why-card h3 { font-family: var(--mono); font-size: 14.5px; margin: 0 0 8px; font-weight: 600; }
+  .why-card p { color: var(--text-dim); font-size: 13.5px; margin: 0; }
+
+  /* ---------- Stack ---------- */
+  .stack-row { display: flex; flex-wrap: wrap; gap: 10px; }
+  .stack-pill {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text-dim);
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    padding: 7px 14px;
+    background: var(--panel);
+  }
+
+  /* ---------- Contact ---------- */
+  .contact-shell {
+    background: var(--panel);
+    border: 1px solid var(--border-strong);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .contact-shell .term-body { padding: 28px 26px 30px; min-height: auto; }
+  .cmd-line {
+    font-family: var(--mono);
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin: 0 0 20px;
+    word-break: break-word;
+  }
+  .cmd-line .flag { color: var(--amber); }
+  form { display: grid; gap: 16px; }
+  .field label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+  .field input, .field textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    border-radius: 5px;
+    padding: 11px 13px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14.5px;
+    transition: border-color 0.15s ease;
+  }
+  .field input:focus, .field textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .field textarea { resize: vertical; min-height: 100px; }
+  .submit-row { display: flex; align-items: center; gap: 14px; margin-top: 4px; }
+  .submit-note { font-family: var(--mono); font-size: 12px; color: var(--text-faint); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0 calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  footer p { margin: 0; font-family: var(--mono); font-size: 12.5px; color: var(--text-faint); }
+  .footer-links { display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; }
+  .footer-links a { font-family: var(--mono); font-size: 12.5px; color: var(--text-dim); text-decoration: none; }
+  .footer-links a:hover { color: var(--accent); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before { animation: none; }
+    .cursor { animation: none; opacity: 1; }
+    * { scroll-behavior: auto !important; }
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .navlinks { display: none; }
+    .menu-btn { display: inline-block; }
+    .nav-cta { display: none; }
+    .why-grid { grid-template-columns: 1fr; }
+    section { padding: 56px 0; }
+    .hero { padding: 48px 0 64px; }
+  }
+  .mobile-panel {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    padding: 6px 24px 18px;
+    border-top: 1px solid var(--border);
+  }
+  .mobile-panel.open { display: flex; }
+  .mobile-panel a {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--text-dim);
+    text-decoration: none;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#" class="logo">&lt;SiteOn<span class="tag">/</span>&gt; <span style="color:var(--text-dim); font-weight:400;">Solutions UF</span></a>
+    <ul class="navlinks">
+      <li><a href="#tjanster">tjanster</a></li>
+      <li><a href="#process">process</a></li>
+      <li><a href="#varfor">om_oss</a></li>
+      <li><a href="#kontakt">kontakt</a></li>
+    </ul>
+    <a href="#kontakt" class="nav-cta">boka_konsultation()</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Öppna meny" aria-expanded="false">☰</button>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
+    <a href="#tjanster">tjanster</a>
+    <a href="#process">process</a>
+    <a href="#varfor">om_oss</a>
+    <a href="#kontakt">kontakt</a>
+  </div>
+</header>
+
+<section class="hero" style="border-top:none; padding-top:88px;">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow-line">webbutveckling · uf-företag</p>
+      <h1>Vi bygger hemsidor som faktiskt gör jobbet.</h1>
+      <p class="lede">SiteOn Solutions UF designar och utvecklar snabba, säkra hemsidor och webbutiker åt företag som vill synas och sälja mer på nätet.</p>
+      <div class="cta-row">
+        <a href="#kontakt" class="btn btn-primary">Boka konsultation</a>
+        <a href="#tjanster" class="btn btn-ghost">Se tjänster</a>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        <span class="term-title">siteon — zsh</span>
+      </div>
+      <div class="term-body" id="termBody" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section id="tjanster">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="comment">// tjänster</p>
+      <h2>Fyra funktioner. Ett mål: en hemsida som levererar.</h2>
+      <p>Vi tar hand om hela kedjan, från första skiss till driftsatt sida.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card">
+        <p class="fn"><span class="kw">function</span> <span class="name">webbdesign</span>()</p>
+        <p>Skräddarsydda, responsiva hemsidor byggda från grunden. Inga mallar, inga kompromisser med utseendet.</p>
+      </div>
+      <div class="svc-card">
+        <p class="fn"><span class="kw">function</span> <span class="name">e_handel</span>()</p>
+        <p>Webbutiker med säkra betalningar, produkthantering och ett kassaflöde som inte tappar kunder på vägen.</p>
+      </div>
+      <div class="svc-card">
+        <p class="fn"><span class="kw">function</span> <span class="name">seo_prestanda</span>()</p>
+        <p>Sidor som laddar snabbt och syns i sökresultat. Vi optimerar varje rad kod, inte bara innehållet.</p>
+      </div>
+      <div class="svc-card">
+        <p class="fn"><span class="kw">function</span> <span class="name">underhall</span>()</p>
+        <p>Löpande drift, uppdateringar och support så att sidan fungerar långt efter lanseringen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="comment">// process</p>
+      <h2>Så går ett projekt till</h2>
+      <p>Fyra steg från idé till lansering, med dig med i varje del.</p>
+    </div>
+    <ul class="process-list">
+      <li class="process-item">
+        <span class="process-num">01</span>
+        <div><h3>Analys</h3><p>Vi kartlägger mål, målgrupp och vilket innehåll sidan faktiskt behöver.</p></div>
+      </li>
+      <li class="process-item">
+        <span class="process-num">02</span>
+        <div><h3>Design</h3><p>Vi skissar layout och visuell identitet tillsammans med dig, innan en rad kod skrivs.</p></div>
+      </li>
+      <li class="process-item">
+        <span class="process-num">03</span>
+        <div><h3>Utveckling</h3><p>Vi kodar sidan med modern, snabb och säker teknik — testat på riktiga enheter.</p></div>
+      </li>
+      <li class="process-item">
+        <span class="process-num">04</span>
+        <div><h3>Lansering</h3><p>Sidan driftsätts, du får en genomgång, och vi finns kvar för support efteråt.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="varfor">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="comment">// varför siteon</p>
+      <h2>Studentdrivet. Byggt som ett riktigt techbolag.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <p class="num">01</p>
+        <h3>Snabb leverans</h3>
+        <p>Som UF-företag jobbar vi smidigt — färdig sida på veckor, inte månader.</p>
+      </div>
+      <div class="why-card">
+        <p class="num">02</p>
+        <h3>Modern teknik</h3>
+        <p>Samma verktyg som stora techbolag använder, i mindre och snabbare format.</p>
+      </div>
+      <div class="why-card">
+        <p class="num">03</p>
+        <h3>Prisvärt</h3>
+        <p>Låga omkostnader som studentföretag — det märks direkt på priset.</p>
+      </div>
+      <div class="why-card">
+        <p class="num">04</p>
+        <h3>Personlig kontakt</h3>
+        <p>Du pratar med oss som faktiskt bygger sidan. Inget mellanled.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="padding-top:56px; padding-bottom:56px;">
+  <div class="wrap">
+    <p class="comment" style="margin-bottom:16px;">// tekniken vi bygger med</p>
+    <div class="stack-row">
+      <span class="stack-pill">React</span>
+      <span class="stack-pill">TypeScript</span>
+      <span class="stack-pill">Netlify</span>
+      <span class="stack-pill">Git</span>
+      <span class="stack-pill">Vite</span>
+    </div>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="comment">// kontakt</p>
+      <h2>Redo att starta ditt projekt?</h2>
+      <p>Fyll i formuläret så hör vi av oss inom ett par dagar.</p>
+    </div>
+    <div class="contact-shell">
+      <div class="term-bar">
+        <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        <span class="term-title">kontakt.sh</span>
+      </div>
+      <div class="term-body">
+        <p class="cmd-line">$ ./kontakta_oss <span class="flag">--namn</span> --email <span class="flag">--meddelande</span></p>
+        <form id="contactForm">
+          <div class="field">
+            <label for="namn">namn</label>
+            <input id="namn" name="namn" type="text" placeholder="Ditt namn" required>
+          </div>
+          <div class="field">
+            <label for="email">email</label>
+            <input id="email" name="email" type="email" placeholder="[email protected]" required>
+          </div>
+          <div class="field">
+            <label for="meddelande">meddelande</label>
+            <textarea id="meddelande" name="meddelande" placeholder="Berätta kort om ert projekt..." required></textarea>
+          </div>
+          <div class="submit-row">
+            <button type="submit" class="btn btn-primary">$ skicka()</button>
+            <span class="submit-note" id="formNote">svar inom 1–2 arbetsdagar</span>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <p>© 2026 SiteOn Solutions UF. Alla rättigheter förbehållna.</p>
+    <ul class="footer-links">
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">LinkedIn</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobilePanel = document.getElementById('mobilePanel');
+  menuBtn.addEventListener('click', () => {
+    const open = mobilePanel.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open);
+  });
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobilePanel.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Terminal typing sequence (single orchestrated hero animation)
+  const termBody = document.getElementById('termBody');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const lines = [
+    { type: 'prompt', text: 'visitor@siteon:~$ whoami' },
+    { type: 'out', text: 'SiteOn Solutions UF' },
+    { type: 'prompt', text: 'visitor@siteon:~$ cat om_oss.txt' },
+    { type: 'out', text: 'Vi är ett UF-företag som bygger snabba, säkra\noch sökmotoroptimerade hemsidor åt riktiga\nföretag med riktiga mål.' },
+    { type: 'prompt', text: 'visitor@siteon:~$ ./starta_projekt.sh' },
+  ];
+
+  function renderStatic() {
+    termBody.innerHTML = '';
+    lines.forEach(l => {
+      const p = document.createElement('p');
+      p.className = 'term-line ' + (l.type === 'prompt' ? 'term-prompt' : 'term-out');
+      p.textContent = l.text;
+      termBody.appendChild(p);
+    });
+    const cur = document.createElement('span');
+    cur.className = 'cursor';
+    termBody.appendChild(cur);
+  }
+
+  function typeSequence() {
+    let li = 0;
+    function nextLine() {
+      if (li >= lines.length) return;
+      const l = lines[li];
+      const p = document.createElement('p');
+      p.className = 'term-line ' + (l.type === 'prompt' ? 'term-prompt' : 'term-out');
+      termBody.appendChild(p);
+      let ci = 0;
+      const speed = l.type === 'prompt' ? 22 : 10;
+      function typeChar() {
+        if (ci < l.text.length) {
+          p.textContent += l.text[ci];
+          ci++;
+          setTimeout(typeChar, speed);
+        } else {
+          li++;
+          setTimeout(nextLine, l.type === 'prompt' ? 260 : 420);
+        }
+      }
+      typeChar();
+    }
+    nextLine();
+    setTimeout(() => {
+      const cur = document.createElement('span');
+      cur.className = 'cursor';
+      termBody.appendChild(cur);
+    }, lines.reduce((acc, l) => acc + l.text.length * (l.type === 'prompt' ? 22 : 10) + 400, 300));
+  }
+
+  if (reduceMotion) {
+    renderStatic();
+  } else {
+    typeSequence();
+  }
+
+  // Contact form (front-end only placeholder)
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    document.getElementById('formNote').textContent = 'tack! vi hör av oss snart.';
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
