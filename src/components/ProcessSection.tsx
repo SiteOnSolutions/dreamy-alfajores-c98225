@@ -7,9 +7,9 @@ const steps = [
   },
   {
     number: '02',
-    title: 'AI genererar förslag',
+    title: 'Vi tar fram förslag',
     body:
-      'Utifrån samtalet tar vår AI fram ett eller flera designförslag med text, bilder och struktur anpassad efter din bransch och dina kunder i Trestad.',
+      'Utifrån samtalet använder vi specialiserade verktyg för att ta fram ett eller flera designförslag med text, bilder och struktur anpassad efter din bransch och dina kunder i Trestad.',
   },
   {
     number: '03',

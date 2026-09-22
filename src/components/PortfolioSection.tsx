@@ -39,7 +39,7 @@ export function PortfolioSection() {
             </h2>
           </div>
           <p className="max-w-sm text-sm leading-relaxed text-[var(--ink-soft)]">
-            Konceptbilder som visar hur AI-genererade förslag kan se ut för olika
+            Konceptbilder som visar hur våra förslag kan se ut för olika
             typer av verksamheter i {siteConfig.region}. Riktiga kundprojekt fylls
             på här efterhand.
           </p>

@@ -6,13 +6,13 @@ const reasons = [
     icon: Zap,
     title: 'Snabbt',
     body:
-      'Medan traditionella webbyråer räknar leveranstid i månader, har vi din sida redo att granska inom några dagar — AI sköter det tidskrävande första utkastet.',
+      'Medan traditionella webbyråer räknar leveranstid i månader, har vi din sida redo att granska inom några dagar — specialiserade verktyg sköter det tidskrävande första utkastet.',
   },
   {
     icon: Coins,
     title: 'Prisvärt',
     body:
-      'AI gör grovjobbet, så du betalar för finslipning och omtanke — inte för hundratals timmar manuellt kodande. Fast pris, inga överraskningar.',
+      'Specialiserade verktyg gör grovjobbet, så du betalar för finslipning och omtanke — inte för hundratals timmar manuellt kodande. Fast pris, inga överraskningar.',
   },
   {
     icon: MapPin,
