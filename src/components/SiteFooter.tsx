@@ -19,7 +19,7 @@ export function SiteFooter() {
             </span>
           </a>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-[var(--ink-soft)]">
-            AI-genererade hemsidor åt småföretag i {siteConfig.region} —
+            Moderna hemsidor åt småföretag i {siteConfig.region} —
             {' '}{siteConfig.cities.join(', ')}.
           </p>
         </div>

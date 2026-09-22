@@ -9,13 +9,13 @@ export function Hero() {
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[1.1fr_0.9fr] md:items-center md:gap-8 md:px-8 md:py-24">
         <div className="reveal">
           <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--paper-dim)] px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--teal-dark)]">
-            Hemsidor byggda med AI · {siteConfig.region}
+            Hemsidor byggda med specialiserade verktyg · {siteConfig.region}
           </p>
           <h1 className="font-display text-[2.6rem] leading-[1.05] tracking-tight text-[var(--ink)] sm:text-5xl md:text-6xl">
             En proffsig hemsida, klar innan konkurrenten hunnit svara på sitt mejl.
           </h1>
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-[var(--ink-soft)]">
-            Vi kombinerar AI med lokal hantverkskänsla och bygger snabba, prisvärda
+            Vi kombinerar specialiserade verktyg med lokal hantverkskänsla och bygger snabba, prisvärda
             hemsidor åt småföretag i {siteConfig.cities.join(', ')}. Du berättar om
             verksamheten — vi levererar en sida du är stolt över.
           </p>
@@ -55,7 +55,7 @@ export function Hero() {
           <div className="absolute -inset-6 -z-10 rounded-[2rem] bg-[var(--paper-dim)]" />
           <img
             src={cdnImage('/img/hero-visual.png', 900)}
-            alt="Illustration av en hemsida som byggs ihop av AI, ovanför en flod som symboliserar Trestad"
+            alt="Illustration av en hemsida som byggs ihop, ovanför en flod som symboliserar Trestad"
             className="w-full rounded-2xl border border-[var(--line)]"
             width={900}
             height={600}
